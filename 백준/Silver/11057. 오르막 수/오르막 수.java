@@ -22,9 +22,6 @@ public class Main {
             }
         }
         int ans =0;
-//        for (int i=0;i<10;i++){
-//            ans += arr[N-1][i]%10007;
-//        }
-        System.out.println(arr[N][9]%10007);
+        System.out.println(arr[N][9]);
     }
 }
