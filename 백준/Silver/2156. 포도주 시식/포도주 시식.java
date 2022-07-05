@@ -16,8 +16,8 @@ public class Main {
         arr[1][0] = arr[1][1] = arr[1][2] = 0;
         arr[2][0] = arr[2][1] = arr[2][2] = all[0];
         for (int i = 3; i < n + 2; i++) {
-            arr[i][0] = Math.max(Math.max(arr[i - 2][1], arr[i - 2][0]), arr[i - 2][2]) + all[i - 2];
-            arr[i][1] = Math.max(Math.max(arr[i - 3][1], arr[i - 3][0]), arr[i - 3][2]) + all[i - 2];
+            arr[i][0] = Math.max(Math.max(arr[i - 3][1], arr[i - 3][0]), arr[i - 3][2]) + all[i - 2];
+            arr[i][1] = Math.max(Math.max(arr[i - 2][1], arr[i - 2][0]), arr[i - 2][2]) + all[i - 2];
             arr[i][2] = Math.max(arr[i - 1][1], arr[i - 1][0]) + all[i - 2];
         }
         for (int i = 1; i < n + 2; i++) {
