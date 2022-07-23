@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.StringTokenizer;
 
 public class Main {
     static int T, N, M, K, cnt;
@@ -13,20 +14,20 @@ public class Main {
         //테스트케이스개수
         T = Integer.parseInt(br.readLine());
         for (int c = 0; c < T; c++) {
-            String[] str = br.readLine().split(" ");
+            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
             //세로길이
-            N = Integer.parseInt(str[0]);
+            N = Integer.parseInt(st.nextToken());
             //가로길이
-            M = Integer.parseInt(str[1]);
+            M = Integer.parseInt(st.nextToken());
             // 배추위치 개수
-            K = Integer.parseInt(str[2]);
+            K = Integer.parseInt(st.nextToken());
 
             graph = new int[N + 2][M + 2];
 
             for (int i = 0; i < K; i++) {
-                String str2 = br.readLine();
-                int x = Integer.parseInt(str2.split(" ")[0]);
-                int y = Integer.parseInt(str2.split(" ")[1]);
+                StringTokenizer st2 = new StringTokenizer(br.readLine(), " ");
+                int x = Integer.parseInt(st2.nextToken());
+                int y = Integer.parseInt(st2.nextToken());
                 graph[x + 1][y + 1] = 1;
             }
             //여기까지 입력 받아오기
