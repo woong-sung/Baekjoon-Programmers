@@ -5,9 +5,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
-public class Main{
+public class Main {
     static int[][] sdoku;
-    static int[][] mini;
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void main(String[] args) throws IOException {
@@ -47,8 +46,6 @@ public class Main{
         if (sdoku[y][x] == 0) {
             //해당칸에 둘 수 있는가 확인하기
             for (int c = 1; c <= 9; c++) {
-                //해당칸을포함하는 작은 3*3 찾기
-                mini(y, x);
                 if (chk(y, x, c) == true) {
                     //만족하면 해당칸은 c로 두기
                     sdoku[y][x] = c;
@@ -56,8 +53,8 @@ public class Main{
                     run(y, x + 1);
                 }
             }
-            //해당칸에 둘 수 없다면
-//			다시 해당칸을 0으로 만들고 그 전 칸 실행
+            // 해당칸에 둘 수 없다면
+            // 다시 해당칸을 0으로 만들고 그 전 칸 실행
             sdoku[y][x] = 0;
             return;
         }
@@ -73,7 +70,6 @@ public class Main{
                 return false;
             }
         }
-
         // 2 열비교
         for (int i = 1; i <= 9; i++) {
             if (sdoku[i][x] == c) {
@@ -81,82 +77,18 @@ public class Main{
             }
         }
         // 3 미니비교(3x3)
-        for (int i = 1; i <= 3; i++) {
-            for (int j = 1; j <= 3; j++) {
-                if (mini[i][j] == c) {
+        //--인터넷에서 찾아본 방식
+        int start_x = ((x - 1) / 3) * 3 + 1; // c가 속한 3x3의 행의 첫 위치
+        int start_y = ((y - 1) / 3) * 3 + 1; // c가 속한 3x3의 열의 첫 위치
+
+        for (int i = start_y; i < start_y + 3; i++) {
+            for (int j = start_x; j < start_x + 3; j++) {
+                if (sdoku[i][j] == c) {
                     return false;
                 }
             }
         }
-
         // 놓을 수 있으면 t 없으면 f
         return true;
     }
-
-    // 미니생성
-    static void mini(int y, int x) {
-        mini = new int[4][4];
-        if (y < 4) {
-            if (x < 4) {
-                for (int i = 1; i <= 3; i++) {
-                    for (int j = 1; j <= 3; j++) {
-                        mini[i][j] = sdoku[i][j];
-                    }
-                }
-            } else if (4 <= x && x < 7) {
-                for (int i = 1; i <= 3; i++) {
-                    for (int j = 4; j <= 6; j++) {
-                        mini[i][j - 3] = sdoku[i][j];
-                    }
-                }
-            } else if (7 <= x && x < 10) {
-                for (int i = 1; i <= 3; i++) {
-                    for (int j = 7; j <= 9; j++) {
-                        mini[i][j - 6] = sdoku[i][j];
-                    }
-                }
-            }
-        } else if (4 <= y && y < 7) {
-            if (x < 4) {
-                for (int i = 4; i <= 6; i++) {
-                    for (int j = 1; j <= 3; j++) {
-                        mini[i - 3][j] = sdoku[i][j];
-                    }
-                }
-            } else if (4 <= x && x < 7) {
-                for (int i = 4; i <= 6; i++) {
-                    for (int j = 4; j <= 6; j++) {
-                        mini[i - 3][j - 3] = sdoku[i][j];
-                    }
-                }
-            } else if (7 <= x && x < 10) {
-                for (int i = 4; i <= 6; i++) {
-                    for (int j = 7; j <= 9; j++) {
-                        mini[i - 3][j - 6] = sdoku[i][j];
-                    }
-                }
-            }
-        } else if (7 <= x && x < 10) {
-            if (y < 4) {
-                for (int i = 7; i <= 9; i++) {
-                    for (int j = 1; j <= 3; j++) {
-                        mini[i - 6][j] = sdoku[i][j];
-                    }
-                }
-            } else if (4 <= y && y < 7) {
-                for (int i = 7; i <= 9; i++) {
-                    for (int j = 4; j <= 6; j++) {
-                        mini[i - 6][j - 3] = sdoku[i][j];
-                    }
-                }
-            } else if (7 <= y && y < 10) {
-                for (int i = 7; i <= 9; i++) {
-                    for (int j = 7; j <= 9; j++) {
-                        mini[i - 6][j - 6] = sdoku[i][j];
-                    }
-                }
-            }
-        }
-    }
-
 }
