@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 305736 KB, 시간: 1252 ms
+메모리: 305428 KB, 시간: 1240 ms
 
 ### 분류
 
@@ -14,7 +14,7 @@
 
 <p>스도쿠는 18세기 스위스 수학자가 만든 '라틴 사각형'이랑 퍼즐에서 유래한 것으로 현재 많은 인기를 누리고 있다. 이 게임은 아래 그림과 같이 가로, 세로 각각 9개씩 총 81개의 작은 칸으로 이루어진 정사각형 판 위에서 이뤄지는데, 게임 시작 전 일부 칸에는 1부터 9까지의 숫자 중 하나가 쓰여 있다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 240px; height: 230px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/508363ac-0289-4a92-a639-427b10d66633/-/preview/" style="width: 240px; height: 230px;"></p>
 
 <p>나머지 빈 칸을 채우는 방식은 다음과 같다.</p>
 
