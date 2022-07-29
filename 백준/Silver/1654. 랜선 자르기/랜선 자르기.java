@@ -16,22 +16,23 @@ public class Main {
         int[] wlan = new int[K];
         // 만들 랜선의 최대 길이
         // 초기값 입력과 동시에 비교해서 최대값을 넣는다
-        long preMax = 0;
+        long max = 0;
         for (int i = 0; i < K; i++) {
             wlan[i] = Integer.parseInt(br.readLine());
-            preMax = Math.max(preMax, wlan[i]);
+            max = Math.max(max, wlan[i]);
         }
         //여기까지 입력 받아오기
-        preMax ++;
+
         // 만들 랜선의 최소 길이
-        long min = 0;      
-        long max = 0;
+        long min = 0;
+        // 이전의 최대 길이
+        long preMax = max;
+
         // 각각 랜선을 잘라서 나온 개수를 sum에 더하는데
         // 개수가 원하는 개수에 도달할 때까지 반복
         // 이분탐색을 이용하여 범위를 절반씩 나누면서 찾아보기
         // ex 802 -> 451 -> 225 -> 112 -> 작아졌으니 168 -> 191 -> 208 -> 199
         while (min < preMax) {
-            max = (preMax + min) / 2;
             long sum = 0;
             for (int i = 0; i < K; i++) {
                 if (sum > N || max == 0) break;
@@ -42,7 +43,7 @@ public class Main {
             } else {
                 min = max+1;
             }
-            
+            max = (preMax + min) / 2;
         }
         System.out.println(min-1);
     }
