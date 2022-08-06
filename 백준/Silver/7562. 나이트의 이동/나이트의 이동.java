@@ -31,7 +31,12 @@ public class Main {
             des_y = Integer.parseInt(str[0]);
             des_x = Integer.parseInt(str[1]);
             
-            Queue<Integer[]> q = new LinkedList<>();
+            bfs(cur_y, cur_x);
+            System.out.println(board[des_y][des_x]-1);
+        }
+    }
+    public static void bfs(int cur_y,int cur_x){
+           Queue<Integer[]> q = new LinkedList<>();
             q.add(new Integer[] {cur_y, cur_x});
             // 시작점은 방문했으니 체크
             board[cur_y][cur_x] = 1;
@@ -41,6 +46,8 @@ public class Main {
                 // cy cx는 현재위치
                 int cy = arr[0];
                 int cx = arr[1];
+                
+                if(cy==des_y && cx== des_x) return;
                 for (int j = 0; j < 8; j++) {
                     //ny nx는 다음칸
                     int nx = cx+dx[j];
@@ -56,7 +63,5 @@ public class Main {
                     }
                 }
             }
-            System.out.println(board[des_y][des_x]-1);
-        }
     }
 }
