@@ -1,6 +1,6 @@
-class Solution {
-    public int[] solution(int rows, int columns, int[][] queries) {
-        int[] answer = new int[queries.length];
+public class Solution {
+        public int[] solution(int rows, int columns, int[][] queries) {
+            int[] answer = new int[queries.length];
 
             int[][] arr = new int[rows][columns];
 
@@ -26,60 +26,38 @@ class Solution {
 
                 int temp = arr[y1 + 1][x1];
 
-
                 int temp2 = 0;
                 for (int j = 0; j < total; j++) {
-
+                    temp2 = arr[cy][cx];
+                    arr[cy][cx] = temp;
+                    temp = temp2;
+                    
                     if (cx < x2 && cy == y1) {
                         //오른쪽으로 이동
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cx++;
                     } else if (cx == x2 && cy == y1) {
                         // 모서리 방향전환
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cy++;
                     } else if (cx == x2 && cy < y2) {
                         //아래로 이동
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cy++;
                     } else if (cx == x2 && cy == y2) {
                         // 모서리 방향전환
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cx--;
                     } else if (cx > x1 && cy == y2) {
                         //왼쪽으로 이동
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cx--;
                     } else if (cx == x1 && cy == y2) {
                         // 모서리 방향전환
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cy--;
                     } else if (cx == x1 && cy < y2) {
                         //위로 이동
-                        temp2 = arr[cy][cx];
-                        arr[cy][cx] = temp;
-                        temp = temp2;
                         cy--;
                     }
-
                     min = Math.min(min, temp);
                 }
-
                 answer[i] = min;
             }
-
             return answer;
+        }
     }
-}
