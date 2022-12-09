@@ -1,18 +1,16 @@
 class Solution {
     public int[] solution(String s) {
-        int[] answer = {};
-        int cntZero = 0;
-        int cnt = 0;
-        while(!s.equals("1")){
-            int len1 = s.length();
-            s = s.replace("0","");    
-            int len2 = s.length();
-            cntZero += len1-len2;
-            cnt++;
-            s = Integer.toBinaryString(s.length());
+        int[] answer = new int[2];
+        int temp;
+        while( !s.equals("1") ) {
+            answer[1] += s.length();
+            s = s.replaceAll("0", "");
+            temp = s.length();
+            s = Integer.toBinaryString(temp);
+            //System.out.println("s : " + s ); 
+            answer[0]++;
+            answer[1] -= temp;
         }
-        
-                   
-        return new int []{cnt, cntZero};
+        return answer;  
     }
 }
