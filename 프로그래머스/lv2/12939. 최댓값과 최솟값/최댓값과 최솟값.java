@@ -2,15 +2,23 @@ import java.util.*;
 
 class Solution {
     public String solution(String s) {
-               StringTokenizer st = new StringTokenizer(s);
-        List<Integer> list = new ArrayList<>();
-        while (st.hasMoreTokens()){
-            list.add(Integer.parseInt(st.nextToken()));
+        String answer = "";
+        String[] arr = s.split(" ");
+        int g = Integer.parseInt(arr[0]);
+        int l = Integer.parseInt(arr[0]);
+    
+        for(int i=0;i<arr.length;i++){
+            int curNum = Integer.parseInt(arr[i]);
+            if(curNum >= l && curNum <= g) continue;
+            if(curNum<l){
+                l = curNum;                
+            }
+            if(curNum>g){
+                g = curNum;
+            }
         }
-        list.sort(Comparator.naturalOrder());
-        int minNum = list.get(0);
-        int maxNum = list.get(list.size()-1);
-        String answer = minNum + " " + maxNum;
+        answer = l + " " + g;
+
         return answer;
     }
 }
