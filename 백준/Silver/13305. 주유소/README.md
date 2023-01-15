@@ -1,10 +1,10 @@
-# [Silver IV] 주유소 - 13305 
+# [Silver III] 주유소 - 13305 
 
 [문제 링크](https://www.acmicpc.net/problem/13305) 
 
 ### 성능 요약
 
-메모리: 36048 KB, 시간: 412 ms
+메모리: 20452 KB, 시간: 296 ms
 
 ### 분류
 
