@@ -14,7 +14,7 @@ public class Main {
 
     public static void getLen() {
         int len = 1; // 자릿수
-        long targetNum = 0; // 찾을 숫자
+        int targetNum = 0; // 찾을 숫자
         long sizeByTen = 9; //자릿수에 따른 갯수 9,90,900,...
         while (k > sizeByTen * len) {
             k -= sizeByTen * len;
