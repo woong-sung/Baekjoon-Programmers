@@ -14,7 +14,7 @@ public class Main {
         Arrays.sort(houses);
         int answer = 1;
         int left = 1;
-        int right = houses[N - 1] - houses[0] + 1;
+        int right = houses[N - 1] - houses[0];
         int mid = (left + right) / 2;
         while(left<=right){
             if (check(houses, C, mid)) {
