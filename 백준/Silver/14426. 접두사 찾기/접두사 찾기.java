@@ -1,40 +1,68 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class Main {
+
+    public static class TrieNode {
+
+        boolean end = false;
+        HashMap<Character, TrieNode> childNodes = new HashMap<>();
+
+        public TrieNode() {}
+
+        public void add(String word) {
+            TrieNode trieNode = this;
+
+            for (int i = 0; i < word.length(); i++) {
+                trieNode = trieNode.childNodes.computeIfAbsent(word.charAt(i), c -> new TrieNode());
+            }
+
+            trieNode.end = true;
+        }
+
+        public boolean search(String word) {
+            TrieNode currentNode = this;
+
+            for (int i = 0; i < word.length(); i++) {
+                if (currentNode.end) {
+                    return false;
+                }
+
+                currentNode = currentNode.childNodes.get(word.charAt(i));
+
+                if (currentNode == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String NM = br.readLine();
-        int N = Integer.parseInt(NM.split(" ")[0]);
-        int M = Integer.parseInt(NM.split(" ")[1]);
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int count = 0;
 
-        HashSet<String> S = new HashSet<>();
-        // contains의 실행속도가
-        // list는 O(N)이지만 set의 경우는 O(1)이다.
-        for (int i = 0; i < N; i++) {
-            S.add(br.readLine());
+        TrieNode trieNode = new TrieNode();
+
+        for (int i = 0; i < n; i++) {
+            String word = new StringTokenizer(br.readLine()).nextToken();
+            trieNode.add(word);
         }
 
-        int cnt = 0;
-        for (int i = 0; i < M; i++) {
-            String check = br.readLine();
-            boolean done = false;
-            for (String str : S) {
-                int len = check.length();
-                for (int j = 0; j < len; j++) {
-                    if (str.charAt(j) != check.charAt(j)) {
-                        break;
-                    }
-                    if (j == len - 1) {
-                        cnt++;
-                        done = true;
-                    }
-                }
-                if (done) break;
+        for (int i = 0; i < m; i++) {
+            String searchedWord = new StringTokenizer(br.readLine()).nextToken();
+            if (trieNode.search(searchedWord)) {
+                count++;
             }
         }
-        System.out.println(cnt);
+
+        System.out.println(count);
     }
 }
