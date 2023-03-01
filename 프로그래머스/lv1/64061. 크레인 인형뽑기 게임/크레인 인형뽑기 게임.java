@@ -4,12 +4,14 @@ class Solution {
     public int solution(int[][] board, int[] moves) {
         int answer = 0;
         Stack<Integer> basket = new Stack<>();
+
         Queue<Integer>[] allBoard = new Queue[board.length];
 
         for (int i = 0; i < board.length; i++) {
             allBoard[i] = new LinkedList<>();
             for (int j = 0; j < board[i].length; j++) {
                 if (board[j][i]==0) continue;
+
                 allBoard[i].add(board[j][i]);
             }
         }
