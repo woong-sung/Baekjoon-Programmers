@@ -10,9 +10,8 @@ class Solution {
         bans = banned_id;
         cnt = 0;
         banLists = new HashSet<>();
-        for (int i = 0; i < users.length; i++) {
-            userChecked = new boolean[user_id.length];
-        }
+        userChecked = new boolean[user_id.length];
+        
         bfs(0,new ArrayList<>());
         return banLists.size();
     }
