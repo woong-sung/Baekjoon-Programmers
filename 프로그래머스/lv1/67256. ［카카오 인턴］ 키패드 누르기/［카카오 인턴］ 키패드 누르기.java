@@ -40,33 +40,28 @@ class Solution {
 
 	static int getDis(int a, int b) {
 		int dis = 0;
-		if (Math.abs(a - b) == 1) {
+        if(b>a){
+            int c = a;
+            a = b;
+            b = c;
+        }
+		if (a - b == 1) {
 			dis = 1;
-			if (a == 3 && b == 4 || a == 4 && b == 3 || a == 6 && b == 7 || a == 7 && b == 6) {
+			if (a == 4 && b == 3 || a == 7 && b == 6) {
 				dis += 2;
 			}
-		} else if (Math.abs(a - b) == 2) {
+    	} else if (a - b == 2 || a - b == 4 || a - b == 6) {
 			dis += 2;
-		} else if (Math.abs(a - b) == 3) {
+			if (a == 7 && b == 3) {
+				dis += 2;
+			}
+		} else if (a - b == 3) {
 			dis += 1;
-		} else if (Math.abs(a - b) == 4) {
-			dis += 2;
-			if (a == 3 && b == 7 || a == 7 && b == 3) {
-				dis += 2;
-			}
-		} else if (Math.abs(a - b) == 5) {
+		} else if (a - b == 5 || a - b == 7 || a - b == 9) {
 			dis += 3;
-		} else if (Math.abs(a - b) == 6) {
-			dis += 2;
-		} else if (Math.abs(a - b) == 7) {
-			dis += 3;
-		} else if (Math.abs(a - b) == 8) {
+		} else if (a - b == 8 || a - b == 10) {
 			dis += 4;
-		} else if (Math.abs(a - b) == 9) {
-			dis += 3;
-		} else if (Math.abs(a - b) == 10) {
-			dis += 4;
-		}
+		} 
 		return dis;
 	}
 }
