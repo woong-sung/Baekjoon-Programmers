@@ -9,7 +9,7 @@ class Solution {
          
         answer = Math.abs(money - total);
         if(money-total>0) answer = 0;
-        
+         
         return answer;
     }
 }
