@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.*;  
 class Solution {
         static int ans;
         static List<Integer>[] list;
