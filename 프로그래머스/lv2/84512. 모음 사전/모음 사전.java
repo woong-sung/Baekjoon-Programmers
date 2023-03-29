@@ -1,25 +1,18 @@
+import java.util.*;
 class Solution {
-    static int ans,cnt;
-    public static int solution(String word) {
-        find(word, new StringBuilder());
-        return ans;
-    }
-
-    public static void find(String word,StringBuilder sb){
-        if(sb.toString().equals(word)){
-            ans = cnt;
-            return;
+        public int solution(String word) {
+        Map<Character, Integer> cMap = new HashMap<>();
+        cMap.put('A', 0);
+        cMap.put('E', 1);
+        cMap.put('I', 2);
+        cMap.put('O', 3);
+        cMap.put('U', 4);
+        int[] nums = new int[]{781, 156, 31, 6, 1};
+        int answer = word.length();
+        for (int i = 0; i < word.length(); i++) {
+            char cur = word.charAt(i);
+            answer += cMap.get(cur) * nums[i];
         }
-        if(sb.length()==5) return;
-
-        Character[] arr = new Character[]{'A','E','I','O','U'};
-
-        for(int i=0;i<5;i++){
-            cnt++;
-            sb.append(arr[i]);
-            find(word, sb);
-            sb.deleteCharAt(sb.length()-1);
-            if (ans!=0) return;
-        }
+        return answer;
     }
 }
