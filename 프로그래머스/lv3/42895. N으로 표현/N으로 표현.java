@@ -1,20 +1,20 @@
 import java.util.*;
+
 class Solution {
     static List<Number> list;
     static boolean[] visit;
 
     public int solution(int N, int number) {
         int answer = Integer.MAX_VALUE;
-        visit = new boolean[1000001];    // 중복체크
+        visit = new boolean[1000001];    
         list = new ArrayList<>();   // 해당숫자로 만들 수 있는 기본 숫자 리스트 {5,55,555,5555,...}
         // 리스트 채우기
-        String s = String.valueOf(N);
         int c = 1;
-        while (Integer.parseInt(s) < 1000000) {
-            int f = Integer.parseInt(s);
+        int f = N;
+        while (f < 1000000) {
             list.add(new Number(f,c++));
             visit[f] = true;
-            s += N;
+            f=f*10+N;
         }
 
         Queue<Number> q = new PriorityQueue<>();  //우선순위 큐로 설정하여 원하는 최솟값찾기
