@@ -1,10 +1,10 @@
 # [level 4] 사칙연산 - 1843 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1843?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1843) 
 
 ### 성능 요약
 
-메모리: 52.3 MB, 시간: 0.34 ms
+메모리: 52.1 MB, 시간: 0.21 ms
 
 ### 구분
 

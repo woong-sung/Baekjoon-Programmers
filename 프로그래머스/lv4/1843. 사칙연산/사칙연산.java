@@ -1,29 +1,22 @@
 class Solution {
-        public int solution(String arr[]) {
-            int max = 0;
-            int min = 0;
-            int sum = 0;
-            int index = arr.length - 1;
-//            for (int i = 0; i < arr.length-1 ; i ++) {
-//                int num = Integer.parseInt(arr[arr.length - 1 - i]);
-            while(index>=0){
-                String s = arr[index];
-                if (s.charAt(0)>='0'){
-                    sum += Integer.parseInt(s);
-                }
-//                if (pm.equals("+")) sum += num;
-//                else if (pm.equals("-")) {
-                else if (s.equals("-")) {
-                    int temp1 = -(sum + min);
-                    int temp2 = -2*Integer.parseInt(arr[index+1]) + sum + max;
-                    int temp3 = -(sum + max);
-                    int temp4 = -sum + min;
-                    max = Math.max(temp1, temp2);
-                    min = Math.min(temp3, temp4);
-                    sum = 0;
-                }
-                index--;
+    public int solution(String arr[]) {
+        int max = 0;
+        int min = 0;
+        int sum = 0;
+        for (int i = 0; i < arr.length-1 ; i += 2) {
+            int num = Integer.parseInt(arr[arr.length - 1 - i]);
+            String pm = arr[arr.length - 2 - i];
+            if (pm.equals("+")) sum += num;
+            else if (pm.equals("-")) {
+                int temp1 = -(num + sum + min);
+                int temp2 = -num + sum + max;
+                int temp3 = -(num+ sum + max);
+                int temp4 = -(num + sum) + min;
+                max = Math.max(temp1, temp2);
+                min = Math.min(temp3, temp4);
+                sum = 0;
             }
-            return max + sum;
         }
+        return max + Integer.parseInt(arr[0]) + sum;
     }
+}
