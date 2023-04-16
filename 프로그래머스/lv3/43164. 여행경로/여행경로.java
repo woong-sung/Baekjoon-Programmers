@@ -8,9 +8,7 @@ class Solution {
         Arrays.sort(tickets, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
-                int ans = o1[0].compareTo(o2[0]);
-                if (ans == 0 ) ans = o1[1].compareTo(o2[1]);
-                return ans;
+                return o1[1].compareTo(o2[1]);
             }
         });
 
