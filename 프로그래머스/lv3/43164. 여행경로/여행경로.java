@@ -1,10 +1,10 @@
 import java.util.*;
 class Solution {
-    static List<String[]> ansLists;
+    static String[] answer;
     static boolean[] visit;
     public String[] solution(String[][] tickets) {
         visit = new boolean[tickets.length];
-        ansLists = new ArrayList<>();
+        answer = new String[tickets.length + 1];
         Arrays.sort(tickets, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
@@ -14,15 +14,15 @@ class Solution {
             }
         });
 
-        List<String> route = new ArrayList<>();
+        List<String> route = new ArrayList<>(); 
         route.add("ICN");
         dfs(route, tickets.length,tickets);
-        return ansLists.get(0);
+        return answer;
     }
 
     public void dfs(List<String> route, int ticketSize, String[][] tickets){
         if (route.size()==ticketSize+1) {
-            ansLists.add(route.toArray(new String[route.size()]));
+            answer = route.toArray(new String[route.size()]);
             return;
         }
 
@@ -34,6 +34,7 @@ class Solution {
                 String to = tickets[i][1];
                 route.add(to);
                 dfs(route,ticketSize,tickets);
+                if(answer[0]!=null) return;
                 visit[i] = false;
                 route.remove(route.size() - 1);
             }
