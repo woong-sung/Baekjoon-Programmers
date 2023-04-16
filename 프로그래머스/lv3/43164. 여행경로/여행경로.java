@@ -1,19 +1,10 @@
 import java.util.*;
-
 class Solution {
-    static Set<String> all;
     static List<String[]> ansLists;
-    static Set<String> set;
     static boolean[] visit;
     public String[] solution(String[][] tickets) {
-        all = new HashSet<>();
-        set = new HashSet<>();
         visit = new boolean[tickets.length];
         ansLists = new ArrayList<>();
-        for (int i = 0; i < tickets.length; i++) {
-            all.add(tickets[i][0]);
-            all.add(tickets[i][1]);
-        }
         Arrays.sort(tickets, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
@@ -23,28 +14,28 @@ class Solution {
             }
         });
 
-        List<String> list = new ArrayList<>();
-        list.add("ICN");
-        dfs(list, tickets.length,tickets);
+        List<String> route = new ArrayList<>();
+        route.add("ICN");
+        dfs(route, tickets.length,tickets);
         return ansLists.get(0);
     }
 
-    public void dfs(List<String> list, int c, String[][] tickets){
-        if (list.size()==c+1) {
-            ansLists.add(list.toArray(new String[list.size()]));
+    public void dfs(List<String> route, int ticketSize, String[][] tickets){
+        if (route.size()==ticketSize+1) {
+            ansLists.add(route.toArray(new String[route.size()]));
             return;
         }
 
-        String from = list.get(list.size() - 1);
+        String from = route.get(route.size() - 1);
         for (int i = 0; i < tickets.length; i++) {
             String ticketFrom = tickets[i][0];
             if (from.equals(ticketFrom) && !visit[i]) {
                 visit[i] = true;
                 String to = tickets[i][1];
-                list.add(to);
-                dfs(list,c,tickets);
+                route.add(to);
+                dfs(route,ticketSize,tickets);
                 visit[i] = false;
-                list.remove(list.size() - 1);
+                route.remove(route.size() - 1);
             }
         }
     }
