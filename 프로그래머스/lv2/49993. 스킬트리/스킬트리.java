@@ -21,12 +21,10 @@ class Solution {
                     } else {
                         able[map.get(c)+1] = true;
                     }
-                    
                 }
             }
             if(can) answer++;
         }
-        
         return answer;
     }
 }
