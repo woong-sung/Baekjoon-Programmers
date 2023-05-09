@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -15,25 +14,19 @@ public class Main {
         for (int i = 0; i < N; i++) {
             A[i] = Integer.parseInt(st.nextToken());
         }
-        int[] sum = new int[N];
-        sum[0] = A[0];
-        for (int i = 1; i < N; i++) {
-            sum[i] = A[i] + sum[i - 1];
-        }
         int cnt = 0;
-        for (int i = 0; i < N; i++) {
-            if (sum[i] == M) {
-                cnt++;
-            }else {
-                int temp = sum[i];
-                for (int j = 0; j < i; j++) {
-                    temp -= A[j];
-                    if (temp == M) {
-                        cnt++;
-                        break;
-                    }
-                }
+        int start = 0;
+        int end = 0;
+        int sum = 0;
+        while (true) {
+            if (sum >= M) {
+                sum -= A[start++];
+            } else if (end >= N){
+                break;
+            } else {
+                sum += A[end++];
             }
+            if (sum==M) cnt++;
         }
         System.out.println(cnt);
     }
