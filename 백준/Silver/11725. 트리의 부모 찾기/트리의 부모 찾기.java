@@ -1,11 +1,10 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
         List<Integer>[] link = new ArrayList[N + 1];
         for (int i = 0; i <= N; i++) {
@@ -34,7 +33,9 @@ public class Main {
             }
         }
         for (int i = 2; i < answer.length; i++) {
-            System.out.println(answer[i]);
+            bw.write(answer[i]+"\n");
         }
+        bw.flush();
+        bw.close();
     }
 }
